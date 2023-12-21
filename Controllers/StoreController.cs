@@ -1,15 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoreManager.Api.DummyData;
+using System.Text.Json;
 
 namespace StoreManager.Api.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
+    [Produces("application/json")]
     public class StoreController : ControllerBase
     {
         [HttpGet]
-        public string GetStores()
+        public List<DummyData.Store> GetStores()
         {
-            return "get all Test Store";
+            DummyData.DummyData dummyData = new DummyData.DummyData();
+            return dummyData.Stores();
         }
 
         [HttpGet("{id}")]
